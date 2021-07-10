@@ -4,7 +4,7 @@
 import os
 import wave
 import numpy as np
-import matplotlib.pyplot as plt  
+# import matplotlib.pyplot as plt
 import math
 import time
 
@@ -62,15 +62,7 @@ def GetFrequencyFeature3(wavsignal, fs):
 	#print(data_input.shape)
 	data_input = np.log(data_input + 1)
 	return data_input
-	
-def wav_show(wave_data, fs): # 显示出来声音波形
-	time = np.arange(0, len(wave_data)) * (1.0/fs)  # 计算声音的播放时间，单位为秒
-	# 画声音波形
-	#plt.subplot(211)  
-	plt.plot(time, wave_data)  
-	#plt.subplot(212)  
-	#plt.plot(time, wave_data[1], c = "g")  
-	plt.show()  
+
 
 	
 def get_wav_list(filename):
@@ -108,21 +100,4 @@ def get_wav_symbol(filename):
 			list_symbolmark.append(txt_l[0])
 	txt_obj.close()
 	return dic_symbol_list,list_symbolmark
-	
-if(__name__=='__main__'):
-	
-	wave_data, fs = read_wav_data("E:\\py_project\\hk\\avi\\MU204\\MU204_1.wav")
-	# wave_data, fs = read_wav_data("../test.wav")
-	wav_show(wave_data[0],fs)
-	t0=time.time()
-	freimg = GetFrequencyFeature3(wave_data,fs)
-	t1=time.time()
-	print('time cost:',t1-t0)
-	
-	freimg = freimg.T
-	plt.subplot(111)
-	
-	plt.imshow(freimg)
-	plt.colorbar(cax=None,ax=None,shrink=0.5)  
-	 
-	plt.show() 
+

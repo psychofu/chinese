@@ -31,7 +31,7 @@ ms = ModelSpeech(datapath)
 ms.LoadModel(modelpath + 'speech_model251_e_0_step_1361250.model')
 
 #ms.TestModel(datapath, str_dataset='test', data_count = 64, out_report = True)
-r = ms.RecognizeSpeech_FromFile('E:\\py_project\\hk\\avi\\MU291\\MU291_3.wav')
+r = ms.RecognizeSpeech_FromFile('test.wav')
 
 
 K.clear_session()

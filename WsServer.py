@@ -3,13 +3,10 @@ import queue
 import numpy as np
 import threading
 from SpeechModel251 import ModelSpeech, GetSymbolList
-from Pinyin2Hanzi import DefaultHmmParams
-from Pinyin2Hanzi import viterbi
-hmmparams = DefaultHmmParams()
-a = ModelSpeech()
-a.LoadModel("checkpoint/weights_1596110931.0748937.hdf5")
+a = ModelSpeech("\\")
+a.LoadModel("model_speech\\speech_model251_e_0_step_1361250.model")
 
-list_symbol_dic = GetSymbolList()  # 获取拼音列表
+list_symbol_dic = GetSymbolList("")  # 获取拼音列表
 
 class WSServerInstance(WebSocket):
     def handleMessage(self):
@@ -79,14 +76,14 @@ class WSServer(object):
                     print("\ntest phones:")
                     print(" ".join(r_str))
                     # 拼音转汉字
-                    result = ""
-                    if r_str:
-                        result = ''.join(viterbi(hmm_params=hmmparams, observations=tuple(r_str), path_num=1)[0].path)
-                        print("on get message:", result)
+                    # result = ""
+                    # if r_str:
+                    #     result = ''.join(viterbi(hmm_params=hmmparams, observations=tuple(r_str), path_num=1)[0].path)
+                    #     print("on get message:", result)
 
 
                     # self.broadcast_message(result)
-                    self.send_message(result, fileno)
+                    self.send_message(" ".join(r_str), fileno)
                     saveMessage = my_buf[-1]
                     my_buf.clear()
                     my_buf.append(saveMessage)

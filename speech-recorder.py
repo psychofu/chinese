@@ -13,13 +13,13 @@ def my_record():
                      rate=framerate, input=True,
                      frames_per_buffer=NUM_SAMPLES)
     my_buf = list()
-    while 2000 < (3 / (NUM_SAMPLES / framerate)):#控制录音时间
-    # while True:
+    while len(my_buf) < 10:
         # 每8000帧传输一次,0.5s
         string_audio_data = stream.read(NUM_SAMPLES)
         my_buf.append(string_audio_data)
 
-    save_wave_file("01.wav", my_buf)
+
+    save_wave_file("test.wav", my_buf)
     stream.close()
     pa.terminate()
 
@@ -49,6 +49,6 @@ def save_wave_file(filename, data):
     wf.close()
 
 if __name__ == '__main__':
-    # my_record()
+    my_record()
     print('Over!')
-    play()
+    # play()
